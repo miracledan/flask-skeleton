@@ -17,7 +17,6 @@ if os.path.exists('.env'):
             os.environ[var[0]] = var[1]
 
 from app import create_app, db, assets
-from app import socket
 from flask.ext.script import Manager, Shell, Command, Option
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')

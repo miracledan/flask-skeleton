@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import current_app, request, render_template
 from app.exceptions import ValidationError
 from . import api

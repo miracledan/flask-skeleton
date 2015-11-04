@@ -6,7 +6,7 @@ class Config:
     PROJECT_NAME = 'fs'
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SSL_DISABLE = False
-    LOG_FILE = '/var/log/%s/%s.log' % (PROJECT_NAME, PROJECT_NAME)
+    LOG_FILE = '/var/log/%s.log' % PROJECT_NAME
     LOG_MAX_BYTES = 10000
     LOG_BACKUP_COUNT = 1
     LOG_FORMATTER = logging.Formatter("[%(asctime)s] {%(pathname)s:%(lineno)d} " \
@@ -26,7 +26,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     DATABASE = {
-        'name': os.environ.get('DEV_DB_NAME') or PROJECT_NAME,
+        'name': os.environ.get('DEV_DB_NAME') or Config.PROJECT_NAME,
         'engine': 'playhouse.pool.PooledMySQLDatabase',
         # 'engine': 'peewee.MySQLDatabase',
         'host': '192.168.2.100',
@@ -46,7 +46,7 @@ class DevelopmentConfig(Config):
 
 class ProductConfig(Config):
     DATABASE = {
-        'name': os.environ.get('DEV_DB_NAME') or PROJECT_NAME,
+        'name': os.environ.get('DEV_DB_NAME') or Config.PROJECT_NAME,
         'engine': 'playhouse.pool.PooledMySQLDatabase',
         'host': 'localhost',
         'port': 3306,
@@ -66,7 +66,7 @@ class ProductConfig(Config):
 class SqliteConfig(Config):
     DEBUG = True
     DATABASE = {
-        'name': '%s-dev.db' % PROJECT_NAME,
+        'name': '%s-dev.db' % Config.PROJECT_NAME,
         'engine': 'peewee.SqliteDatabase',
         'check_same_thread': False,
     }
@@ -74,7 +74,7 @@ class SqliteConfig(Config):
 class TestingConfig(Config):
     TESTING = True
     DATABASE = {
-        'name': '%s-test.db' % PROJECT_NAME,
+        'name': '%s-test.db' % Config.PROJECT_NAME,
         'engine': 'peewee.SqliteDatabase',
         'check_same_thread': False,
     }

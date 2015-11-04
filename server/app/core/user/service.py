@@ -8,7 +8,6 @@ from peewee import DoesNotExist, fn, JOIN
 from app.database import db
 from app.utils import singleton
 from app.exceptions import ServiceError, PeeweeError
-from ..activity.service import activityService
 from ..models import User
 
 @singleton

@@ -4,12 +4,6 @@ from random import seed, randint
 import forgery_py
 from app.database import db
 from user.models import *
-from issues.models import *
-from tag.models import *
-from project.models import *
-from activity.models import *
-from git.models import *
-from blog.models import *
 
 def mock_user(count=10):
     seed()
